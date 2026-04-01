@@ -1,0 +1,70 @@
+# Decap CMS configuration for Scene Police Records
+# Before using: set repo, branch, and base_url below.
+# See README for OAuth setup instructions.
+
+backend:
+  name: github
+  repo: geekpunk/scenepolice2026
+  branch: master
+  base_url: https://YOUR_OAUTH_PROXY_URL       # e.g. https://your-cloud-function.cloudfunctions.net
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  # --- News Posts ---
+  - name: posts
+    label: News Posts
+    folder: content/post
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # --- Artists ---
+  - name: artists
+    label: Artists
+    folder: content/artists
+    create: true
+    slug: "{{slug}}"
+    filter: { field: title, value: _index, operator: "!=" }
+    fields:
+      - { label: Name, name: title, widget: string }
+      - { label: Bandcamp URL, name: bandcamp_url, widget: string, required: false,
+          hint: "Full URL, e.g. https://scenepolice.bandcamp.com/search?q=bandname" }
+      - label: Releases
+        name: releases
+        widget: list
+        required: false
+        fields:
+          - { label: "Catalog #", name: catalog, widget: string }
+          - { label: Title, name: title, widget: string }
+          - { label: Year, name: year, widget: number }
+          - { label: Bandcamp URL, name: bandcamp_url, widget: string, required: false }
+      - { label: Bio, name: body, widget: markdown }
+
+  # --- Static Pages ---
+  - name: pages
+    label: Pages
+    files:
+      - label: About
+        name: about
+        file: content/about.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }
+      - label: Contact
+        name: contact
+        file: content/contact.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }
+      - label: Releases
+        name: releases
+        file: content/releases.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }

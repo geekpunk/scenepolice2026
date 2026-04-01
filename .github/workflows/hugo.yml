@@ -1,0 +1,40 @@
+# Build and deploy Scene Police site to Google Cloud Storage
+name: Deploy Hugo site
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.147.0'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy
+        run: gsutil -m rsync -d -c -r public gs://scenepolice
+
+      - name: Set cache headers
+        run: gsutil -m setmeta -h "Cache-Control:public, max-age=3600" "gs://scenepolice/**"

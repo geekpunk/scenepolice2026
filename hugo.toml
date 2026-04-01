@@ -1,0 +1,49 @@
+baseURL = ''
+languageCode = 'en-us'
+title = 'Scene Police Records'
+theme = "paper"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+  instagram = "punxhcilated"
+  bandcamp = "https://scenepolice.bandcamp.com"
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 9
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "releases"
+    name = "Releases"
+    url = "/releases/"
+    weight = 11
+
+  [[menu.main]]
+    identifier = "artists"
+    name = "Artists"
+    url = "/artists/"
+    weight = 12
+
+  [[menu.main]]
+    identifier = "news"
+    name = "News"
+    url = "/post/"
+    weight = 13
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 14
