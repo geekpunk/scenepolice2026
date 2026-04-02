@@ -26,6 +26,11 @@
   --sp-car-border:#3f3f46;
 }
 
+/* Cancel Tailwind's universal padding reset — restore browser defaults */
+*, *::before, *::after, *::backdrop, *::file-selector-button {
+  padding: revert;
+}
+
 /* --- Base --- */
 html, body {
   background-color: var(--sp-bg) !important;
