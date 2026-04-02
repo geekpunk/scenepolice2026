@@ -6,7 +6,7 @@ backend:
   name: github
   repo: geekpunk/scenepolice2026
   branch: master
-  base_url: https://decap-oauth-1020975414601.europe-west1.run.app/      # e.g. https://your-cloud-function.cloudfunctions.net
+  base_url: https://decap-oauth-1020975414601.europe-west1.run.app/callback      # e.g. https://your-cloud-function.cloudfunctions.net
 
 media_folder: static/images
 public_folder: /images
