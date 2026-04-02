@@ -9,6 +9,7 @@ unsafe = true
 [params]
   instagram = "punxhcilated"
   bandcamp = "https://scenepolice.bandcamp.com"
+  mainSections = ["post"]
 
 [menu]
 
