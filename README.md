@@ -61,9 +61,22 @@ releases:
 Bio in Markdown.
 ```
 
-## CMS
+## Editing content
 
-A browser-based admin UI is available at `/admin/` (Decap CMS). It requires a GitHub OAuth proxy to be configured — see `static/admin/config.yml` for setup instructions.
+All content is Markdown files in `content/`. Edit them directly in GitHub or clone the repo and push to `master` — the site deploys automatically.
+
+**GitHub web editor (no setup required):**
+1. Open the file in GitHub (e.g. `content/post/my-post.md`)
+2. Click the pencil icon to edit
+3. Commit directly to `master` — the site will redeploy within a minute
+
+**Locally:**
+```bash
+# Edit files, then push
+git add content/post/my-new-post.md
+git commit -m "Add post"
+git push
+```
 
 ## Deployment
 
