@@ -5,9 +5,10 @@
 {{- end }}
 
 {{- if .IsHome }}
-<p class="sp-eyebrow">Latest dispatches</p>
-<h1 class="sp-page-title">News<em>.</em></h1>
-<div class="sp-divider"></div>
+<div class="sp-section-header">
+  <h2 class="sp-section-title">Latest News</h2>
+  <div class="sp-section-rule"></div>
+</div>
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections -}}
@@ -17,28 +18,37 @@
 
 {{- $paginator := .Paginate $pages -}}
 
-<ul class="sp-post-list">
-{{- range $paginator.Pages }}
-  <li>
-    <a class="sp-post-row" href="{{ .Permalink }}">
-      <div class="sp-post-kicker">
-        <span class="sp-post-date">{{ .Date | time.Format "Jan 02, 2006" }}</span>
-        {{- if gt .Weight 0 }}<span class="sp-post-badge">Featured</span>{{- end }}
+<div class="sp-cards-list">
+  {{- range $paginator.Pages }}
+  <article class="sp-news-card">
+    <a class="sp-news-card-link" href="{{ .Permalink }}">
+      <div class="sp-news-card-meta">
+        <h3 class="sp-news-card-title">{{ .Title }}</h3>
+        <span class="sp-news-card-date">{{ .Date | time.Format "Jan 2, 2006" }}</span>
       </div>
-      <span class="sp-post-title-text">{{ .Title }}</span>
+      {{- with .Summary }}
+      <p class="sp-news-card-excerpt">{{ . | plainify | truncate 180 }}</p>
+      {{- end }}
     </a>
-  </li>
-{{- end }}
-</ul>
+  </article>
+  {{- end }}
+</div>
 
 {{- if gt $paginator.TotalPages 1 }}
-<div class="sp-pagination">
-  {{- if $paginator.HasPrev }}
-  <a class="btn" href="{{ $paginator.Prev.URL }}">← Prev</a>
-  {{- end }}
-  {{- if $paginator.HasNext }}
-  <a class="btn ml-auto" href="{{ $paginator.Next.URL }}">Next →</a>
-  {{- end }}
+<div class="sp-pagination-bar">
+  <a class="sp-pag-btn{{ if not $paginator.HasPrev }} disabled{{ end }}"
+     {{ if $paginator.HasPrev }}href="{{ $paginator.Prev.URL }}"{{ end }}
+     aria-label="Previous page">&#8592;</a>
+
+  <div class="sp-pag-dots">
+    {{- range $paginator.Pagers }}
+    <span class="sp-pag-dot{{ if eq . $paginator }} active{{ end }}"></span>
+    {{- end }}
+  </div>
+
+  <a class="sp-pag-btn{{ if not $paginator.HasNext }} disabled{{ end }}"
+     {{ if $paginator.HasNext }}href="{{ $paginator.Next.URL }}"{{ end }}
+     aria-label="Next page">&#8594;</a>
 </div>
 {{- end }}
 

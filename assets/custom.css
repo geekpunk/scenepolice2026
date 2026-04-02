@@ -591,3 +591,333 @@ footer a {
   text-decoration: none !important;
 }
 footer a:hover { color: var(--sp-red-hi) !important; }
+
+/* ============================================================
+   SECTION HEADER (shared across pages)
+   ============================================================ */
+.sp-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.sp-section-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+  letter-spacing: 0.04em !important;
+  color: var(--sp-white) !important;
+  white-space: nowrap;
+  margin: 0 !important;
+}
+.sp-section-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--sp-red), var(--sp-border), transparent);
+}
+
+/* ============================================================
+   NEWS CARDS
+   ============================================================ */
+.sp-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.sp-news-card {
+  background: var(--sp-bg-2);
+  border: 1px solid var(--sp-border);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.sp-news-card:hover {
+  border-color: #2e2e2e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.sp-news-card-link {
+  display: block;
+  padding: 1.5rem 1.75rem;
+  text-decoration: none !important;
+}
+.sp-news-card-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.sp-news-card-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(1.4rem, 3vw, 1.9rem) !important;
+  letter-spacing: 0.03em !important;
+  color: var(--sp-white) !important;
+  line-height: 1.1 !important;
+  margin: 0 !important;
+  transition: color 0.12s;
+  flex: 1;
+}
+.sp-news-card:hover .sp-news-card-title { color: var(--sp-red-hi) !important; }
+.sp-news-card-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--sp-bg);
+  background: var(--sp-red);
+  padding: 3px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+.sp-news-card-excerpt {
+  font-size: 0.88rem;
+  color: var(--sp-muted);
+  line-height: 1.65;
+  margin: 0 !important;
+}
+
+/* ============================================================
+   PAGINATION BAR
+   ============================================================ */
+.sp-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--sp-border);
+}
+.sp-pag-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--sp-border);
+  color: var(--sp-muted);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.12s, border-color 0.12s;
+}
+.sp-pag-btn:hover:not(.disabled) {
+  color: var(--sp-white);
+  border-color: var(--sp-red);
+}
+.sp-pag-btn.disabled {
+  opacity: 0.25;
+  cursor: default;
+  pointer-events: none;
+}
+.sp-pag-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.sp-pag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--sp-border);
+  transition: background 0.15s, width 0.15s;
+}
+.sp-pag-dot.active {
+  background: var(--sp-red);
+  width: 18px;
+}
+
+/* ============================================================
+   MERCH GRID
+   ============================================================ */
+.sp-merch-intro {
+  margin-bottom: 1.5rem !important;
+  font-size: 0.85rem;
+  color: var(--sp-muted) !important;
+}
+.sp-merch-intro a { color: var(--sp-red-hi) !important; }
+.sp-merch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--sp-border);
+}
+.sp-merch-card {
+  background: var(--sp-bg-2);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-decoration: none !important;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.sp-merch-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--sp-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+.sp-merch-card:hover { background: var(--sp-bg-3); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+.sp-merch-card:hover::after { transform: scaleX(1); }
+.sp-merch-card-type {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sp-red);
+}
+.sp-merch-card-name {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.03em !important;
+  color: var(--sp-white) !important;
+  line-height: 1.1 !important;
+  margin: 0.25rem 0 auto !important;
+}
+.sp-merch-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+  margin-top: 1rem;
+  transition: color 0.12s;
+}
+.sp-merch-card:hover .sp-merch-cta { color: var(--sp-red-hi); }
+
+/* ============================================================
+   CONTACT FORM + ASIDE
+   ============================================================ */
+.sp-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+@media (min-width: 700px) {
+  .sp-contact-grid { grid-template-columns: 3fr 2fr; }
+}
+.sp-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--sp-bg-2);
+  border: 1px solid var(--sp-border);
+  padding: 1.75rem;
+}
+.sp-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.sp-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+}
+.sp-label-hint {
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  opacity: 0.7;
+}
+.sp-input {
+  background: var(--sp-bg);
+  border: 1px solid var(--sp-border);
+  color: var(--sp-text);
+  padding: 0.65rem 0.85rem;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.12s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.sp-input:focus { border-color: var(--sp-red); }
+.sp-input::placeholder { color: var(--sp-muted); opacity: 0.6; }
+.sp-textarea { resize: vertical; min-height: 8rem; }
+.sp-submit-btn {
+  background: var(--sp-red);
+  color: #fff;
+  border: none;
+  padding: 0.85rem 1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.12s, transform 0.1s;
+  width: 100%;
+}
+.sp-submit-btn:hover { background: var(--sp-red-hi); }
+.sp-submit-btn:active { transform: scale(0.98); }
+
+.sp-contact-aside { display: flex; flex-direction: column; gap: 1rem; }
+.sp-contact-panel {
+  background: var(--sp-bg-2);
+  border: 1px solid var(--sp-border);
+  padding: 1.5rem;
+}
+.sp-panel-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.08em !important;
+  color: var(--sp-white) !important;
+  margin: 0 0 1rem !important;
+}
+.sp-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  color: var(--sp-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--sp-border);
+  transition: color 0.12s;
+}
+.sp-contact-row:last-child { border-bottom: none; }
+.sp-contact-row:hover { color: var(--sp-white); }
+.sp-contact-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--sp-red);
+}
+.sp-social-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--sp-bg);
+  border: 1px solid var(--sp-border);
+  color: var(--sp-muted);
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+  margin-bottom: 0.5rem;
+}
+.sp-social-row:last-child { margin-bottom: 0; }
+.sp-social-row svg { width: 16px; height: 16px; flex-shrink: 0; }
+.sp-social-row:hover { color: var(--sp-white); border-color: var(--sp-red); background: rgba(181,42,28,0.08); }
+
+/* Nav active state underline (prototype pattern) */
+.sp-nav a.active {
+  color: var(--sp-white) !important;
+  position: relative;
+}
+.sp-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0.7rem;
+  right: 0.7rem;
+  height: 2px;
+  background: var(--sp-red);
+}

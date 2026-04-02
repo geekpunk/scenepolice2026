@@ -2,6 +2,7 @@ baseURL = ''
 languageCode = 'en-us'
 title = 'Scene Police Records'
 theme = "paper"
+paginate = 3
 
 [markup.goldmark.renderer]
 unsafe = true

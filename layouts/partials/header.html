@@ -12,9 +12,11 @@
 
   <!-- Desktop Nav -->
   <nav class="sp-nav" aria-label="Main navigation">
+    {{- $cur := . -}}
     {{- with site.Menus.main -}}
     {{- range . -}}
-    <a href="{{- .URL -}}">{{- .Name -}}</a>
+    {{- $active := or (eq $cur.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $cur.RelPermalink .URL)) -}}
+    <a href="{{- .URL -}}"{{- if $active }} class="active"{{- end -}}>{{- .Name -}}</a>
     {{- end -}}
     {{- end -}}
   </nav>
@@ -48,9 +50,11 @@
 
 <!-- Mobile Navigation Drawer -->
 <nav class="sp-mobile-nav" id="sp-mobile-nav" aria-label="Mobile navigation">
+  {{- $cur := . -}}
   {{- with site.Menus.main -}}
   {{- range . -}}
-  <a href="{{- .URL -}}">{{- .Name -}}</a>
+  {{- $active := or (eq $cur.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $cur.RelPermalink .URL)) -}}
+  <a href="{{- .URL -}}"{{- if $active }} class="active"{{- end -}}>{{- .Name -}}</a>
   {{- end -}}
   {{- end -}}
 </nav>
