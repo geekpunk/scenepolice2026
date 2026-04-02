@@ -6,7 +6,7 @@ backend:
   name: github
   repo: geekpunk/scenepolice2026
   branch: master
-  base_url: https://decap-oauth-1020975414601.europe-west1.run.app/decap-oauth
+  base_url:  https://decap-oauth-1020975414601.europe-west1.run.app
 
 media_folder: static/images
 public_folder: /images
