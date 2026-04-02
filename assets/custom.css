@@ -15,7 +15,7 @@
   --sp-red:       #b52a1c;
   --sp-red-hi:    #d93a2a;
   --sp-border:    #e4e4e7;
-  --sp-header-h:  4.5rem;
+  --sp-header-h:  calc(38px + 1rem); /* logo height + top/bottom padding */
   --bg:           #fafaf9;
   --w:            58rem;
 
@@ -102,12 +102,11 @@ body, p, li, td, th {
   position: sticky;
   top: 0;
   z-index: 200;
-  height: var(--sp-header-h);
   background: var(--sp-surface);
   border-bottom: 1px solid var(--sp-border);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0.5rem 2rem;
   gap: 0;
 }
 
