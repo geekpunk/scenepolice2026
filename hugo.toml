@@ -36,7 +36,7 @@ unsafe = true
   [[menu.main]]
     identifier = "merch"
     name = "Merch"
-    url = "/merch/"
+    url = "https://scenepolice.bandcamp.com/merch"
     weight = 12
 
   [[menu.main]]
