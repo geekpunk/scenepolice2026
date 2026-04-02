@@ -60,14 +60,11 @@
 </nav>
 
 <script>
-  // Always dark
   const htmlClass = document.documentElement.classList;
   setTimeout(() => { htmlClass.remove('not-ready'); }, 10);
-  htmlClass.add('dark');
   const metaTheme = document.querySelector('meta[name="theme-color"]');
-  if (metaTheme) metaTheme.setAttribute('content', '#0a0a0a');
+  if (metaTheme) metaTheme.setAttribute('content', '#fafaf9');
 
-  // Mobile menu
   const burger = document.getElementById('sp-burger');
   const mobileNav = document.getElementById('sp-mobile-nav');
   if (burger && mobileNav) {
@@ -77,7 +74,6 @@
       burger.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
-    // Close on nav link click
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileNav.classList.remove('open');

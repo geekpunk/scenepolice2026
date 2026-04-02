@@ -13,26 +13,21 @@
 {{- end -}}
 
 <html
-  class="not-ready dark lg:text-base"
-  style="--bg: #0a0a0a"
+  class="not-ready lg:text-base"
+  style="--bg: #fafaf9"
   lang="{{- or site.LanguageCode site.Language.Lang -}}"
   dir="ltr"
 >
   {{- partial "head.html" . -}}
   <body
-    class="bg-(--bg) text-white antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent]"
+    class="bg-(--bg) antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent]"
   >
     {{- partial "header.html" . -}}
 
-    {{- $hdr := resources.Get "header.avif" -}}
-    {{- with $hdr }}
-    <div class="sp-site-banner">
-      <img src="{{ .RelPermalink }}" alt="Scene Police Records" />
-    </div>
-    {{- end }}
+    {{- block "wide" . -}}{{- end -}}
 
     <main
-      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+      class="prose prose-neutral relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
     >
       {{- block "main" . -}}{{- end -}}
     </main>

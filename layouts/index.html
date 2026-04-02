@@ -1,0 +1,89 @@
+{{ define "wide" }}
+{{- with site.Data.carousel.slides }}
+<div class="sp-carousel" id="sp-carousel">
+  {{- range $i, $slide := . }}
+  <div class="sp-carousel-slide{{ if eq $i 0 }} active{{ end }}">
+    <div class="sp-carousel-bg" style="background-image: url('{{ $slide.image }}')"></div>
+    <div class="sp-carousel-content">
+      <div class="sp-carousel-art">
+        <img src="{{ $slide.image }}" alt="{{ $slide.artist }} – {{ $slide.title }}" loading="lazy">
+      </div>
+      <div class="sp-carousel-info">
+        {{- with $slide.badge }}<span class="sp-carousel-badge">{{ . }}</span>{{- end }}
+        <h2 class="sp-carousel-title">{{ $slide.title }}</h2>
+        <p class="sp-carousel-artist">{{ $slide.artist }}</p>
+        <a class="sp-carousel-btn" href="{{ $slide.bandcamp_url }}"
+           target="_blank" rel="noopener noreferrer">
+          Listen&nbsp;/&nbsp;Buy &#9654;
+        </a>
+      </div>
+    </div>
+  </div>
+  {{- end }}
+
+  <button class="sp-carousel-prev" aria-label="Previous slide">&#8592;</button>
+  <button class="sp-carousel-next" aria-label="Next slide">&#8594;</button>
+
+  <div class="sp-carousel-dots">
+    {{- range $i, $slide := . }}
+    <button class="sp-carousel-dot{{ if eq $i 0 }} active{{ end }}"
+            data-index="{{ $i }}"
+            aria-label="Slide {{ add $i 1 }}"></button>
+    {{- end }}
+  </div>
+</div>
+{{- end }}
+{{ end }}
+
+{{ define "main" }}
+<div class="sp-section-header">
+  <h2 class="sp-section-title">Latest News</h2>
+  <div class="sp-section-rule"></div>
+</div>
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+<div class="sp-news-grid">
+  {{- range first 3 $pages }}
+  <article class="sp-news-grid-card">
+    <a href="{{ .Permalink }}">
+      <time class="sp-news-grid-date">{{ .Date | time.Format "Jan 2, 2006" }}</time>
+      <h3 class="sp-news-grid-title">{{ .Title }}</h3>
+      {{- with .Summary }}
+      <p class="sp-news-grid-excerpt">{{ . | plainify | truncate 140 }}</p>
+      {{- end }}
+      <span class="sp-news-grid-more">Read More &#8594;</span>
+    </a>
+  </article>
+  {{- end }}
+</div>
+
+<script>
+(function () {
+  var carousel = document.getElementById('sp-carousel');
+  if (!carousel) return;
+  var slides = carousel.querySelectorAll('.sp-carousel-slide');
+  var dots   = carousel.querySelectorAll('.sp-carousel-dot');
+  if (!slides.length) return;
+  var current = 0, timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = ((n % slides.length) + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  }
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+  carousel.querySelector('.sp-carousel-prev').addEventListener('click', function () { goTo(current - 1); });
+  carousel.querySelector('.sp-carousel-next').addEventListener('click', function () { goTo(current + 1); });
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { goTo(+d.dataset.index); });
+  });
+  resetTimer();
+}());
+</script>
+{{ end }}

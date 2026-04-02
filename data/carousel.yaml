@@ -1,0 +1,13 @@
+# Carousel slides — edit this file to update the home page hero.
+# Each slide needs: title, artist, badge, image (path under /images/), bandcamp_url
+slides:
+  - title: "A23a"
+    artist: "Ligatures"
+    badge: "New Release"
+    image: "/images/a23a-front.jpg"
+    bandcamp_url: "https://scenepolice.bandcamp.com/album/ligatures-a23a"
+  - title: "Agency"
+    artist: "Ligatures"
+    badge: "Available Now"
+    image: "/images/Agency-Front.png"
+    bandcamp_url: "https://scenepolice.bandcamp.com/album/agency"
