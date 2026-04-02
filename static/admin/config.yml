@@ -24,28 +24,6 @@ collections:
       - { label: Featured, name: featured, widget: boolean, default: false, required: false }
       - { label: Body, name: body, widget: markdown }
 
-  # --- Artists ---
-  - name: artists
-    label: Artists
-    folder: content/artists
-    create: true
-    slug: "{{slug}}"
-    filter: { field: title, value: _index, operator: "!=" }
-    fields:
-      - { label: Name, name: title, widget: string }
-      - { label: Bandcamp URL, name: bandcamp_url, widget: string, required: false,
-          hint: "Full URL, e.g. https://scenepolice.bandcamp.com/search?q=bandname" }
-      - label: Releases
-        name: releases
-        widget: list
-        required: false
-        fields:
-          - { label: "Catalog #", name: catalog, widget: string }
-          - { label: Title, name: title, widget: string }
-          - { label: Year, name: year, widget: number }
-          - { label: Bandcamp URL, name: bandcamp_url, widget: string, required: false }
-      - { label: Bio, name: body, widget: markdown }
-
   # --- Static Pages ---
   - name: pages
     label: Pages

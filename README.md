@@ -24,7 +24,6 @@ All content lives in `content/` as Markdown with YAML frontmatter:
 | Path | Description |
 |------|-------------|
 | `content/post/` | News posts — create a new `.md` file to add a post |
-| `content/artists/` | Artist pages with bio, Bandcamp link, and release list |
 | `content/about.md` | About page |
 | `content/releases.md` | Full releases catalog |
 | `content/contact.md` | Contact page |
@@ -41,24 +40,6 @@ featured: false
 ---
 
 Post body in Markdown.
-```
-
-### Adding an artist
-
-Create `content/artists/band-name.md`:
-
-```yaml
----
-title: "Band Name"
-bandcamp_url: "https://scenepolice.bandcamp.com/..."
-releases:
-  - catalog: "SCP ##"
-    title: "Release Title"
-    year: 2000
-    bandcamp_url: "https://scenepolice.bandcamp.com/album/slug"
----
-
-Bio in Markdown.
 ```
 
 ## Editing content
