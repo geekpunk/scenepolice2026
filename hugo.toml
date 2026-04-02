@@ -32,10 +32,16 @@ unsafe = true
     weight = 11
 
   [[menu.main]]
+    identifier = "merch"
+    name = "Merch"
+    url = "/merch/"
+    weight = 12
+
+  [[menu.main]]
     identifier = "news"
     name = "News"
     url = "/post/"
-    weight = 12
+    weight = 13
 
   [[menu.main]]
     identifier = "contact"
