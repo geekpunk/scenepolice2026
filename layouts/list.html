@@ -1,35 +1,45 @@
 {{ define "main" }}
 
-{{ if and .Title (eq .Type "tags") }}
-<h1 class="mb-16">#{{ .Title }}</h1>
-{{ end }}
+{{- if and .Title (eq .Type "tags") }}
+<h1 class="sp-page-title">#{{ .Title }}</h1>
+{{- end }}
 
-{{ $pages := union .RegularPages .Sections }}
-{{ if .IsHome }}
-{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{ end }}
+{{- if .IsHome }}
+<p class="sp-eyebrow">Latest dispatches</p>
+<h1 class="sp-page-title">News<em>.</em></h1>
+<div class="sp-divider"></div>
+{{- end }}
 
-{{ $paginator := .Paginate $pages }}
-{{ range $paginator.Pages }}
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  {{ if gt .Weight 0 }}
-  <span class="mb-2 ml-px inline-block text-[0.8rem] font-medium uppercase tracking-wider text-[#ff3b2d] opacity-70">Featured</span>
-  {{ end }}
-  <h2 class="!my-0 pb-1 font-bold !leading-none">{{ .Title }}</h2>
-  <time class="text-sm antialiased opacity-60">{{ .Date | time.Format ":date_medium" }}</time>
-  <a class="absolute inset-0 text-[0]" href="{{ .Permalink }}">{{ .Title }}</a>
-</section>
-{{ end }}
+{{- $pages := union .RegularPages .Sections -}}
+{{- if .IsHome -}}
+  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- end -}}
 
-{{ if gt $paginator.TotalPages 1 }}
-<nav class="mt-16 flex">
-  {{ if $paginator.HasPrev }}
-  <a class="btn" href="{{ $paginator.Prev.URL }}">← {{ i18n "prev_page" }}</a>
-  {{ end }}
-  {{ if $paginator.HasNext }}
-  <a class="btn ml-auto" href="{{ $paginator.Next.URL }}">{{ i18n "next_page" }} →</a>
-  {{ end }}
-</nav>
-{{ end }}
+{{- $paginator := .Paginate $pages -}}
+
+<ul class="sp-post-list">
+{{- range $paginator.Pages }}
+  <li>
+    <a class="sp-post-row" href="{{ .Permalink }}">
+      <div class="sp-post-kicker">
+        <span class="sp-post-date">{{ .Date | time.Format "Jan 02, 2006" }}</span>
+        {{- if gt .Weight 0 }}<span class="sp-post-badge">Featured</span>{{- end }}
+      </div>
+      <span class="sp-post-title-text">{{ .Title }}</span>
+    </a>
+  </li>
+{{- end }}
+</ul>
+
+{{- if gt $paginator.TotalPages 1 }}
+<div class="sp-pagination">
+  {{- if $paginator.HasPrev }}
+  <a class="btn" href="{{ $paginator.Prev.URL }}">← Prev</a>
+  {{- end }}
+  {{- if $paginator.HasNext }}
+  <a class="btn ml-auto" href="{{ $paginator.Next.URL }}">Next →</a>
+  {{- end }}
+</div>
+{{- end }}
 
 {{ end }}

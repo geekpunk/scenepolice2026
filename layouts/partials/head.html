@@ -1,0 +1,48 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>
+    {{- if not .IsHome -}}{{- .Title }} - {{ end -}}{{- site.Title -}}
+  </title>
+
+  <meta name="theme-color" content="#0a0a0a" />
+
+  {{- $site_author := or .Params.author site.Params.author site.Title -}}
+  {{- if eq .Kind "page" -}}
+  <meta name="description" content="{{- .Summary -}}" />
+  <meta name="author" content="{{- or .Params.author $site_author -}}" />
+  {{- else -}}
+  <meta name="description" content="{{- site.Params.description | default `Scene Police Records — German & UK hardcore/punk label` -}}" />
+  <meta name="author" content="{{- $site_author -}}" />
+  {{- end -}}
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  {{- $main := resources.Get "main.css" -}}
+  {{- $custom := resources.Get "custom.css" -}}
+  {{- $css := slice $main $custom | resources.Concat "main.css" | minify | fingerprint -}}
+  <link rel="preload stylesheet" as="style" href="{{- $css.Permalink -}}" integrity="{{ $css.Data.Integrity }}" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{- site.Params.favicon | default `favicon.ico` | absURL -}}" />
+  <link rel="apple-touch-icon" href="{{- site.Params.appleTouchIcon | default `apple-touch-icon.png` | absURL -}}" />
+
+  {{- hugo.Generator -}}
+
+  {{- if or hugo.IsProduction (eq site.Params.env "production") -}}
+  {{- template "_internal/google_analytics.html" . -}}
+  {{- template "_internal/schema.html" . -}}
+  {{- template "_internal/opengraph.html" . -}}
+  {{- template "_internal/twitter_cards.html" . -}}
+  {{- range .AlternativeOutputFormats -}}
+  <link rel="{{- .Rel -}}" type="{{- .MediaType.Type -}}" href="{{- .Permalink -}}" title="{{- site.Title -}}" />
+  {{- end -}}
+  <link rel="canonical" href="{{- .Permalink -}}" />
+  {{- end -}}
+</head>

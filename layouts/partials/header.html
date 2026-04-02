@@ -1,104 +1,86 @@
-<header
-  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
->
-  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
-    <a
-      class="-translate-y-[1px] text-2xl font-medium"
-      href="{{- `` | absURL -}}"
-      >{{ site.Title }}</a
-    >
-    <div
-      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer {{ if site.Params.monoDarkIcon }}[background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert{{ else }}[background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)]{{ end }} dark:[background-position:right]"
-      role="button"
-      aria-label="Dark"
-    ></div>
-  </div>
+<!-- Sticky Header -->
+<header class="sp-header">
 
-  <div
-    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
-    role="button"
-    aria-label="Menu"
-  ></div>
+  <!-- Logo / Wordmark -->
+  <a class="sp-logo" href="{{ `` | absURL }}">
+    <img class="sp-logo-mark" src="/images/sp-mark.png" alt="Scene Police Records mark" />
+    <div class="sp-logo-wordmark">
+      <span class="sp-logo-line1">Scene Police</span>
+      <span class="sp-logo-line2">Records · Est. 1998</span>
+    </div>
+  </a>
 
-  {{- $bg_color := $.Scratch.Get "bg_color" -}}<!---->
-
-  <script>
-    // base
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
-
-    // mobile menu
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
-
-    // dark theme
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = '{{- $bg_color -}}'.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? "rgb(0 0 0 / 85%)" : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
-
-    // init
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
-
-    // listen system
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
-
-    // manual switch
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
-
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
-  >
-    {{- $url := .RelPermalink -}}<!---->
+  <!-- Desktop Nav -->
+  <nav class="sp-nav" aria-label="Main navigation">
     {{- with site.Menus.main -}}
-    <nav
-      class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
-    >
-      {{- range . -}}
-      <a
-        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
-        href="{{- .URL -}}"
-        >{{- .Name -}}</a
-      >
-      {{- end -}}
-    </nav>
-    {{- end -}}<!---->
+    {{- range . -}}
+    <a href="{{- .URL -}}">{{- .Name -}}</a>
+    {{- end -}}
+    {{- end -}}
+  </nav>
 
-    {{- with $.Scratch.Get "social_list" -}}
-    <nav
-      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
-    >
-      {{- range . -}}<!---->
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./{{- . -}}.svg)"
-        href="{{- if eq . `rss` -}}{{- `index.xml` | absURL -}}{{- else if eq . `mastodon` -}}{{- index site.Params . -}}{{- else if eq . `bandcamp` -}}{{- index site.Params . -}}{{- else if eq . `threads` -}}https://threads.net/{{- else if eq . `bluesky` -}}https://bsky.app/profile/{{- else -}}https://{{- . -}}.com/{{- if eq . `linkedin` -}}in/{{- end -}}{{- index site.Params . -}}{{- end -}}"
-        target="_blank"
-        rel="{{- if eq . `rss` -}}alternate{{- else -}}me{{- end -}}"
-      >
-        {{- . -}}
-      </a>
-      {{- end -}}<!---->
-    </nav>
-    {{- end -}}<!---->
+  <!-- Social Icons -->
+  <div class="sp-social">
+    {{- with site.Params.instagram -}}
+    <a href="https://instagram.com/{{- . -}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+    </a>
+    {{- end -}}
+    {{- with site.Params.bandcamp -}}
+    <a href="{{- . -}}" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/>
+      </svg>
+    </a>
+    {{- end -}}
   </div>
+
+  <!-- Mobile Hamburger -->
+  <button class="sp-burger" id="sp-burger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
 </header>
+
+<!-- Mobile Navigation Drawer -->
+<nav class="sp-mobile-nav" id="sp-mobile-nav" aria-label="Mobile navigation">
+  {{- with site.Menus.main -}}
+  {{- range . -}}
+  <a href="{{- .URL -}}">{{- .Name -}}</a>
+  {{- end -}}
+  {{- end -}}
+</nav>
+
+<script>
+  // Always dark
+  const htmlClass = document.documentElement.classList;
+  setTimeout(() => { htmlClass.remove('not-ready'); }, 10);
+  htmlClass.add('dark');
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.setAttribute('content', '#0a0a0a');
+
+  // Mobile menu
+  const burger = document.getElementById('sp-burger');
+  const mobileNav = document.getElementById('sp-mobile-nav');
+  if (burger && mobileNav) {
+    burger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    // Close on nav link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
