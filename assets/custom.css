@@ -117,7 +117,6 @@ body, p, li, td, th {
   gap: 0.6rem;
   text-decoration: none !important;
   flex-shrink: 0;
-  margin-right: auto;
 }
 .sp-logo:hover { opacity: 0.75; }
 
