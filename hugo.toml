@@ -32,16 +32,10 @@ unsafe = true
     weight = 11
 
   [[menu.main]]
-    identifier = "artists"
-    name = "Artists"
-    url = "/artists/"
-    weight = 12
-
-  [[menu.main]]
     identifier = "news"
     name = "News"
     url = "/post/"
-    weight = 13
+    weight = 12
 
   [[menu.main]]
     identifier = "contact"
