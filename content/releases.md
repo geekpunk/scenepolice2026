@@ -45,8 +45,16 @@ date:
 | SCP 38 | Tiger Lou – Gone Drifting | 2003 |
 | SCP 39 | [Forstella Ford – Well Versed In Deception](https://scenepolice.bandcamp.com/album/forstella-ford-well-versed-in-deception) | 2003 |
 | SCP 40 | Yaphet Kotto – European Tour 12" | 2003 |
-| SCP 41 | The Storm – The Storm Is Coming | 2003 |
-| SCP-A23a | [Ligatures – A23a](https://scenepolice.bandcamp.com/album/ligatures-a23a) | 2024 |
-| SCP-Agency | [Ligatures – Agency](https://scenepolice.bandcamp.com/album/ligatures-agency-pre-order) | 2024 |
-| SCP-PP | [GEBRETTER – Pint Peddla](https://scenepolice.bandcamp.com/album/gebretter-pint-peddla) | 2024 |
-| SCP-WASTED | [Wasted – The Future Is On Fire](https://scenepolice.bandcamp.com/album/wasted-the-future-is-on-fire-pre-order) | 2025 |
+| SCP -001 | The Storm – The Storm Is Coming | 2003 |
+| SCP 41 | Smashing The Schmetterling Mixtape | 2026 |
+| SCP-42 | [Ligatures – A23a](https://scenepolice.bandcamp.com/album/ligatures-a23a) | 2024 |
+| SCP-43 | [GEBRETTER – Pint Peddla](https://scenepolice.bandcamp.com/album/gebretter-pint-peddla) | 2026 |
+| SCP-44 | [Wasted – The Future Is On Fire](https://scenepolice.bandcamp.com/album/wasted-the-future-is-on-fire-pre-order) | 2026 |
+| SCP-45 | [Ligatures – Agency](https://scenepolice.bandcamp.com/album/ligatures-agency-pre-order) | 2026 |
+| SCP 46 | Mofabande/Alien Fight Club split 7" | July 2026 |
+| SCP 47 | OFFCELL - rewrite 12" | Autumn 2026 |
+| SCP 48 | Sweet Teeth - tbc LP | Late Summer 2026 |
+| SCP 49 | [Tupamaros - Our Modern Paest LP(]https://scenepolice.bandcamp.com/album/tupamaros-our-modern-paest-pre-order) | Late Summer 2026 |
+| SCP 50 | SUPRISE - stay tuned | Autumn 2026 |
+| SCP 51 | Rad Skulls - See You In Hell, Poser LP | Summer 2026 |
+| SCP 52 | The MIstakes - Die Laughing LP | Summer 2026 |
